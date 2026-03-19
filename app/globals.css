@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+:root {
+  --color-elpost-primary: #3B6BE3;
+  --color-elpost-secondary: #1C3B7A;
+  --color-elpost-accent: #3B6BE3;
+  --color-elpost-bg: #f5f6f8;
+  --color-elpost-card: #ffffff;
+  --color-elpost-text: #1a1a1a;
+  --color-elpost-muted: #6b7280;
+  --color-elpost-light: #e8edf7;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--color-elpost-bg);
+  color: var(--color-elpost-text);
+}
