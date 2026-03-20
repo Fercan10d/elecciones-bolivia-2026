@@ -1,7 +1,7 @@
 import { RaceWithCandidates } from "@/lib/types";
 import ResultsBar from "./ResultsBar";
 import ProgressIndicator from "./ProgressIndicator";
-import { formatNumber, calculatePercentage } from "@/lib/utils";
+import { formatNumber } from "@/lib/utils";
 
 interface RaceCardProps {
   race: RaceWithCandidates;
@@ -56,15 +56,17 @@ export default function RaceCard({ race }: RaceCardProps) {
             <div className="flex items-center gap-2">
               <span>Blancos:</span>
               <span className="font-semibold">{formatNumber(race.votos_blancos)}</span>
-              <span className="text-xs">({calculatePercentage(race.votos_blancos, totalEmitidos)}%)</span>
             </div>
             <div className="flex items-center gap-2">
               <span>Nulos:</span>
               <span className="font-semibold">{formatNumber(race.votos_nulos)}</span>
-              <span className="text-xs">({calculatePercentage(race.votos_nulos, totalEmitidos)}%)</span>
             </div>
             <div className="flex items-center gap-2 ml-auto">
-              <span>Total emitidos:</span>
+              <span>Válidos:</span>
+              <span className="font-semibold">{formatNumber(totalVotes)}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span>Emitidos:</span>
               <span className="font-semibold">{formatNumber(totalEmitidos)}</span>
             </div>
           </div>
