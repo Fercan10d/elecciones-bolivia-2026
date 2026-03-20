@@ -6,19 +6,19 @@ import Image from "next/image";
 
 interface RaceSummaryProps {
   race: RaceWithCandidates;
-  basePath?: string;
 }
 
-export default function RaceSummary({ race, basePath = "" }: RaceSummaryProps) {
+export default function RaceSummary({ race }: RaceSummaryProps) {
   const sortedCandidates = [...(race.candidates || [])].sort(
     (a, b) => b.votes - a.votes
   );
   const top3 = sortedCandidates.slice(0, 3);
+  // Porcentajes se calculan solo con votos válidos (sin blancos ni nulos)
   const totalVotes = race.votes_counted || sortedCandidates.reduce((sum, c) => sum + c.votes, 0);
   const href =
     race.type === "gobernador"
-      ? `${basePath}/gobernadores/${race.id}`
-      : `${basePath}/alcaldes/${race.id}`;
+      ? `/gobernadores/${race.id}`
+      : `/alcaldes/${race.id}`;
 
   return (
     <Link href={href} className="block group">

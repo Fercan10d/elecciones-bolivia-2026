@@ -25,7 +25,12 @@ export async function updateRaceProgress(
 export async function bulkUpdateVotes(
   raceId: string,
   updates: { candidateId: number; votes: number }[],
-  raceData?: { actas_counted: number; actas_total: number }
+  raceData?: {
+    actas_counted: number;
+    actas_total: number;
+    votos_blancos: number;
+    votos_nulos: number;
+  }
 ) {
   const supabase = await createClient();
 
@@ -39,12 +44,14 @@ export async function bulkUpdateVotes(
     if (error) return { success: false, error: error.message };
   }
 
-  // Calculate total votes and update race
+  // Calculate total valid votes (sin blancos ni nulos) and update race
   const totalVotes = updates.reduce((sum, u) => sum + u.votes, 0);
   const raceUpdate: Record<string, number> = { votes_counted: totalVotes };
   if (raceData) {
     raceUpdate.actas_counted = raceData.actas_counted;
     raceUpdate.actas_total = raceData.actas_total;
+    raceUpdate.votos_blancos = raceData.votos_blancos;
+    raceUpdate.votos_nulos = raceData.votos_nulos;
   }
 
   const { error: raceError } = await supabase
@@ -105,18 +112,6 @@ export async function updateCandidate(
       photo_url: data.photo_url || null,
     })
     .eq("id", candidateId);
-
-  if (error) return { success: false, error: error.message };
-  revalidatePath("/");
-  return { success: true };
-}
-
-export async function updateOficialPercentage(percentage: string) {
-  const supabase = await createClient();
-  const { error } = await supabase
-    .from("settings")
-    .update({ value: percentage, updated_at: new Date().toISOString() })
-    .eq("key", "oficial_percentage");
 
   if (error) return { success: false, error: error.message };
   revalidatePath("/");

@@ -1,5 +1,15 @@
-import { redirect } from "next/navigation";
+import Header from "@/components/Header";
+import ResultsPage from "@/components/ResultsPage";
+import RealtimeListener from "@/components/RealtimeListener";
+
+export const dynamic = "force-dynamic";
 
 export default function HomePage() {
-  redirect("/boca-de-urna");
+  return (
+    <>
+      <RealtimeListener />
+      <Header />
+      <ResultsPage />
+    </>
+  );
 }

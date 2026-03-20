@@ -1,5 +1,3 @@
-export type ResultType = "boca-de-urna" | "oficial";
-
 export interface Department {
   id: string;
   name: string;
@@ -11,9 +9,10 @@ export interface Race {
   id: string;
   department_id: string;
   type: "gobernador" | "alcalde";
-  result_type: ResultType;
   location_name: string;
   votes_counted: number;
+  votos_blancos: number;
+  votos_nulos: number;
   total_eligible: number;
   actas_counted: number;
   actas_total: number;

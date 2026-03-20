@@ -21,11 +21,6 @@ export default function RealtimeListener() {
         { event: "*", schema: "public", table: "races" },
         () => router.refresh()
       )
-      .on(
-        "postgres_changes",
-        { event: "*", schema: "public", table: "settings" },
-        () => router.refresh()
-      )
       .subscribe();
 
     return () => {

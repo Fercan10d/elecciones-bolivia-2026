@@ -1,6 +1,7 @@
 import { RaceWithCandidates } from "@/lib/types";
 import ResultsBar from "./ResultsBar";
 import ProgressIndicator from "./ProgressIndicator";
+import { formatNumber, calculatePercentage } from "@/lib/utils";
 
 interface RaceCardProps {
   race: RaceWithCandidates;
@@ -10,7 +11,9 @@ export default function RaceCard({ race }: RaceCardProps) {
   const sortedCandidates = [...(race.candidates || [])].sort(
     (a, b) => b.votes - a.votes
   );
+  // Porcentajes se calculan solo con votos válidos (sin blancos ni nulos)
   const totalVotes = race.votes_counted || sortedCandidates.reduce((sum, c) => sum + c.votes, 0);
+  const totalEmitidos = totalVotes + (race.votos_blancos || 0) + (race.votos_nulos || 0);
 
   return (
     <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
@@ -45,6 +48,28 @@ export default function RaceCard({ race }: RaceCardProps) {
           ))
         )}
       </div>
+
+      {/* Votos blancos y nulos */}
+      {(race.votos_blancos > 0 || race.votos_nulos > 0) && (
+        <div className="px-5 py-3 border-t border-gray-100 bg-gray-50">
+          <div className="flex items-center gap-6 text-sm text-[var(--color-elpost-muted)]">
+            <div className="flex items-center gap-2">
+              <span>Blancos:</span>
+              <span className="font-semibold">{formatNumber(race.votos_blancos)}</span>
+              <span className="text-xs">({calculatePercentage(race.votos_blancos, totalEmitidos)}%)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span>Nulos:</span>
+              <span className="font-semibold">{formatNumber(race.votos_nulos)}</span>
+              <span className="text-xs">({calculatePercentage(race.votos_nulos, totalEmitidos)}%)</span>
+            </div>
+            <div className="flex items-center gap-2 ml-auto">
+              <span>Total emitidos:</span>
+              <span className="font-semibold">{formatNumber(totalEmitidos)}</span>
+            </div>
+          </div>
+        </div>
+      )}
 
       {race.updated_at && race.actas_counted > 0 && (
         <div className="px-5 py-2 border-t border-gray-50">

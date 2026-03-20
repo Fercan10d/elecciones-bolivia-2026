@@ -21,8 +21,13 @@ export default function VoteEntryForm({
   );
   const [actasCounted, setActasCounted] = useState(race.actas_counted);
   const [actasTotal, setActasTotal] = useState(race.actas_total);
+  const [votosBlancos, setVotosBlancos] = useState(race.votos_blancos || 0);
+  const [votosNulos, setVotosNulos] = useState(race.votos_nulos || 0);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
+
+  const totalVotosValidos = Object.values(votes).reduce((sum, v) => sum + v, 0);
+  const totalEmitidos = totalVotosValidos + votosBlancos + votosNulos;
 
   async function handleSave() {
     setSaving(true);
@@ -36,6 +41,8 @@ export default function VoteEntryForm({
     const result = await bulkUpdateVotes(race.id, updates, {
       actas_counted: actasCounted,
       actas_total: actasTotal,
+      votos_blancos: votosBlancos,
+      votos_nulos: votosNulos,
     });
 
     if (result.success) {
@@ -122,7 +129,6 @@ export default function VoteEntryForm({
               >
                 <td className="py-3">
                   <div className="flex items-center gap-2">
-                    {/* Foto o inicial */}
                     <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
                       {candidate.photo_url ? (
                         <Image
@@ -177,6 +183,44 @@ export default function VoteEntryForm({
             ))}
           </tbody>
         </table>
+      </div>
+
+      {/* Votos blancos y nulos */}
+      <div className="px-6 py-4 bg-gray-50 border-t border-gray-100">
+        <h3 className="font-semibold text-sm mb-3">Votos blancos y nulos</h3>
+        <div className="flex items-center gap-6">
+          <div>
+            <label className="text-xs text-[var(--color-elpost-muted)] block mb-1">
+              Votos blancos
+            </label>
+            <input
+              type="number"
+              min="0"
+              value={votosBlancos}
+              onChange={(e) => setVotosBlancos(parseInt(e.target.value) || 0)}
+              className="border border-gray-300 rounded-lg px-3 py-2 w-32 text-right font-mono focus:outline-none focus:ring-2 focus:ring-[var(--color-elpost-accent)]"
+            />
+          </div>
+          <div>
+            <label className="text-xs text-[var(--color-elpost-muted)] block mb-1">
+              Votos nulos
+            </label>
+            <input
+              type="number"
+              min="0"
+              value={votosNulos}
+              onChange={(e) => setVotosNulos(parseInt(e.target.value) || 0)}
+              className="border border-gray-300 rounded-lg px-3 py-2 w-32 text-right font-mono focus:outline-none focus:ring-2 focus:ring-[var(--color-elpost-accent)]"
+            />
+          </div>
+          <div className="text-sm text-[var(--color-elpost-muted)] mt-5">
+            <span>Válidos: <strong>{totalVotosValidos.toLocaleString("es-BO")}</strong></span>
+            <span className="ml-4">Total emitidos: <strong>{totalEmitidos.toLocaleString("es-BO")}</strong></span>
+          </div>
+        </div>
+        <p className="text-xs text-[var(--color-elpost-muted)] mt-2">
+          Los porcentajes de candidatos se calculan sobre los votos válidos (sin blancos ni nulos).
+        </p>
       </div>
 
       {/* Botón guardar */}

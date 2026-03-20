@@ -2,7 +2,6 @@ import { createClient } from "@/lib/supabase/server";
 import Link from "next/link";
 import { Race } from "@/lib/types";
 import { getActasPercentage } from "@/lib/utils";
-import OficialPercentageControl from "./OficialPercentageControl";
 
 export default async function AdminDashboard() {
   const supabase = await createClient();
@@ -12,20 +11,12 @@ export default async function AdminDashboard() {
     .select("*, candidates(count)")
     .order("location_name");
 
-  const { data: setting } = await supabase
-    .from("settings")
-    .select("value")
-    .eq("key", "oficial_percentage")
-    .single();
-
-  const oficialPercentage = setting?.value || "0";
-
   const allRaces = (races || []) as (Race & {
     candidates: [{ count: number }];
   })[];
 
-  const bocaDeUrna = allRaces.filter((r) => r.result_type === "boca-de-urna");
-  const oficial = allRaces.filter((r) => r.result_type === "oficial");
+  const gobernadores = allRaces.filter((r) => r.type === "gobernador");
+  const alcaldes = allRaces.filter((r) => r.type === "alcalde");
 
   function RaceRow({
     race,
@@ -68,60 +59,37 @@ export default async function AdminDashboard() {
     );
   }
 
-  function RaceSection({ races, title }: { races: typeof allRaces; title: string }) {
-    const gobernadores = races.filter((r) => r.type === "gobernador");
-    const alcaldes = races.filter((r) => r.type === "alcalde");
-
-    return (
-      <section className="mb-8">
-        <h2 className="text-lg font-bold mb-4 text-[var(--color-elpost-secondary)] flex items-center gap-2">
-          <span className="w-1 h-5 bg-[var(--color-elpost-primary)] rounded-full" />
-          {title}
-        </h2>
-
-        {gobernadores.length > 0 && (
-          <div className="mb-4">
-            <h3 className="text-sm font-semibold text-[var(--color-elpost-muted)] mb-2 uppercase tracking-wide">
-              Gobernadores
-            </h3>
-            <div className="space-y-2">
-              {gobernadores.map((race) => (
-                <RaceRow key={race.id} race={race} />
-              ))}
-            </div>
-          </div>
-        )}
-
-        {alcaldes.length > 0 && (
-          <div>
-            <h3 className="text-sm font-semibold text-[var(--color-elpost-muted)] mb-2 uppercase tracking-wide">
-              Alcaldes
-            </h3>
-            <div className="space-y-2">
-              {alcaldes.map((race) => (
-                <RaceRow key={race.id} race={race} />
-              ))}
-            </div>
-          </div>
-        )}
-      </section>
-    );
-  }
-
   return (
     <div>
       <h1 className="text-2xl font-bold text-[var(--color-elpost-secondary)] mb-6">
-        Elecciones Subnacionales 2026
+        SIREPRE — Elecciones Subnacionales 2026
       </h1>
 
-      <RaceSection races={bocaDeUrna} title="Boca de Urna" />
+      {/* Gobernadores */}
+      <section className="mb-8">
+        <h2 className="text-lg font-bold mb-4 text-[var(--color-elpost-secondary)] flex items-center gap-2">
+          <span className="w-1 h-5 bg-[var(--color-elpost-primary)] rounded-full" />
+          Gobernadores
+        </h2>
+        <div className="space-y-2">
+          {gobernadores.map((race) => (
+            <RaceRow key={race.id} race={race} />
+          ))}
+        </div>
+      </section>
 
-      {/* Control de porcentaje oficial */}
-      <div className="mb-4">
-        <OficialPercentageControl currentValue={oficialPercentage} />
-      </div>
-
-      <RaceSection races={oficial} title="Resultados Oficiales" />
+      {/* Alcaldes */}
+      <section className="mb-8">
+        <h2 className="text-lg font-bold mb-4 text-[var(--color-elpost-secondary)] flex items-center gap-2">
+          <span className="w-1 h-5 bg-[var(--color-elpost-primary)] rounded-full" />
+          Alcaldes
+        </h2>
+        <div className="space-y-2">
+          {alcaldes.map((race) => (
+            <RaceRow key={race.id} race={race} />
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
