@@ -2,9 +2,32 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Elecciones Subnacionales 2026 - e/POST",
+  title: "Resultados Elecciones Subnacionales 2026 - e/POST",
   description:
-    "Resultados en vivo de las elecciones subnacionales de Bolivia 2026. Gobernadores y alcaldes.",
+    "Resultados preliminares SIREPRE de las elecciones subnacionales de Bolivia 2026. Gobernadores y alcaldes de ciudades capitales.",
+  openGraph: {
+    title: "Resultados Elecciones Subnacionales 2026 - e/POST",
+    description:
+      "Resultados preliminares SIREPRE de las elecciones subnacionales de Bolivia 2026. Gobernadores y alcaldes de ciudades capitales.",
+    type: "website",
+    locale: "es_BO",
+    siteName: "e/POST",
+    images: [
+      {
+        url: "https://elpost.com.bo/wp-content/uploads/2026/03/Resultados-preliminares-El-Post.png",
+        width: 1200,
+        height: 630,
+        alt: "Resultados preliminares - e/POST",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Resultados Elecciones Subnacionales 2026 - e/POST",
+    description:
+      "Resultados preliminares SIREPRE de las elecciones subnacionales de Bolivia 2026.",
+    images: ["https://elpost.com.bo/wp-content/uploads/2026/03/Resultados-preliminares-El-Post.png"],
+  },
 };
 
 export default function RootLayout({
