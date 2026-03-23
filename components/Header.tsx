@@ -1,15 +1,13 @@
-import Link from "next/link";
-
 export default function Header() {
   return (
     <header className="bg-[var(--color-elpost-secondary)] text-white">
       <div className="max-w-7xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center">
+          <a href="https://elpost.com.bo/" className="flex items-center">
             <span className="text-2xl font-semibold tracking-tight" style={{ fontFamily: "'Montserrat', sans-serif" }}>
               e/POST
             </span>
-          </Link>
+          </a>
           <div className="text-right">
             <h1 className="text-sm font-semibold opacity-80">
               Elecciones Subnacionales 2026
