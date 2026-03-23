@@ -52,20 +52,20 @@ export default function RaceCard({ race }: RaceCardProps) {
       {/* Votos blancos y nulos */}
       {(race.votos_blancos > 0 || race.votos_nulos > 0) && (
         <div className="px-5 py-3 border-t border-gray-100 bg-gray-50">
-          <div className="flex items-center gap-6 text-sm text-[var(--color-elpost-muted)]">
-            <div className="flex items-center gap-2">
+          <div className="grid grid-cols-2 gap-2 text-sm text-[var(--color-elpost-muted)]">
+            <div className="flex items-center gap-1">
               <span>Blancos:</span>
               <span className="font-semibold">{formatNumber(race.votos_blancos)}</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1">
               <span>Nulos:</span>
               <span className="font-semibold">{formatNumber(race.votos_nulos)}</span>
             </div>
-            <div className="flex items-center gap-2 ml-auto">
+            <div className="flex items-center gap-1">
               <span>Válidos:</span>
               <span className="font-semibold">{formatNumber(totalVotes)}</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1">
               <span>Emitidos:</span>
               <span className="font-semibold">{formatNumber(totalEmitidos)}</span>
             </div>
