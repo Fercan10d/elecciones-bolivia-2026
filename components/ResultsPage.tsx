@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import RaceSummary from "@/components/RaceSummary";
+import WhatsAppBanner from "@/components/WhatsAppBanner";
 import { RaceWithCandidates } from "@/lib/types";
 
 export default async function ResultsPage() {
@@ -34,6 +35,9 @@ export default async function ResultsPage() {
           ))}
         </div>
       </section>
+
+      {/* Banner WhatsApp */}
+      <WhatsAppBanner />
 
       {/* Alcaldes */}
       <section>
