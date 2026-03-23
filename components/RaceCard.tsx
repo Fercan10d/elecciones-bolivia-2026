@@ -80,6 +80,7 @@ export default function RaceCard({ race }: RaceCardProps) {
             {new Date(race.updated_at).toLocaleTimeString("es-BO", {
               hour: "2-digit",
               minute: "2-digit",
+              timeZone: "America/La_Paz",
             })}
           </p>
         </div>
