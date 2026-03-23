@@ -10,21 +10,9 @@ export default async function ResultsPage() {
     .select("*, candidates(*)")
     .order("location_name");
 
-  // Carreras visibles en la página pública (agregar IDs a medida que se cargan datos)
-  const VISIBLE_RACES = [
-    "gob-santa-cruz",
-    "gob-la-paz",
-    "gob-cochabamba",
-    "alc-cochabamba",
-    "alc-santa-cruz",
-    "alc-la-paz",
-    "alc-el-alto",
-  ];
-
   const allRaces = (races || []) as RaceWithCandidates[];
-  const visibleRaces = allRaces.filter((r) => VISIBLE_RACES.includes(r.id));
-  const gobernadores = visibleRaces.filter((r) => r.type === "gobernador");
-  const alcaldes = visibleRaces.filter((r) => r.type === "alcalde");
+  const gobernadores = allRaces.filter((r) => r.type === "gobernador");
+  const alcaldes = allRaces.filter((r) => r.type === "alcalde");
 
   return (
     <main className="max-w-7xl mx-auto px-4 py-6">
