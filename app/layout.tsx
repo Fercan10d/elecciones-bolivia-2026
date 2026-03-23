@@ -42,6 +42,17 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-L1GB8HHMP9"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-L1GB8HHMP9');
+            `,
+          }}
+        />
       </head>
       <body>{children}</body>
     </html>
