@@ -15,6 +15,10 @@ export default async function ResultsPage() {
     "gob-santa-cruz",
     "gob-la-paz",
     "gob-cochabamba",
+    "alc-cochabamba",
+    "alc-santa-cruz",
+    "alc-la-paz",
+    "alc-el-alto",
   ];
 
   const allRaces = (races || []) as RaceWithCandidates[];
