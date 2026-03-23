@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import RaceSummary from "@/components/RaceSummary";
 import WhatsAppBanner from "@/components/WhatsAppBanner";
+import FacebookBanner from "@/components/FacebookBanner";
 import { RaceWithCandidates } from "@/lib/types";
 
 export default async function ResultsPage() {
@@ -51,6 +52,9 @@ export default async function ResultsPage() {
           ))}
         </div>
       </section>
+
+      {/* Banner Facebook */}
+      <FacebookBanner />
 
       <footer className="text-center py-6 text-xs text-[var(--color-elpost-muted)]">
         Datos ingresados manualmente por el equipo de e/POST. Los resultados son preliminares y no oficiales.
