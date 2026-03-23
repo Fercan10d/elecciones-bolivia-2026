@@ -51,7 +51,7 @@ export default async function ResultsPage() {
       <section>
         <h2 className="text-xl font-bold text-[var(--color-elpost-secondary)] mb-4 flex items-center gap-2">
           <span className="w-1 h-6 bg-[var(--color-elpost-primary)] rounded-full" />
-          Alcaldes — Ciudades Capitales
+          Alcaldes — Ciudades Capitales y El Alto
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {alcaldes.map((race) => (
