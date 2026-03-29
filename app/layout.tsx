@@ -9,6 +9,7 @@ export const metadata: Metadata = {
     title: "Resultados Elecciones Subnacionales 2026 - e/POST",
     description:
       "Resultados oficiales SCORC de las elecciones subnacionales de Bolivia 2026. Gobernadores y alcaldes de ciudades capitales.",
+    url: "https://elecciones.elpost.com.bo",
     type: "website",
     locale: "es_BO",
     siteName: "e/POST",
