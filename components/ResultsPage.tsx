@@ -57,7 +57,7 @@ export default async function ResultsPage() {
       <FacebookBanner />
 
       <footer className="text-center py-6 text-xs text-[var(--color-elpost-muted)]">
-        Datos ingresados manualmente por el equipo de e/POST. Los resultados son preliminares y no oficiales.
+        Datos ingresados manualmente por el equipo de e/POST.
       </footer>
     </main>
   );
