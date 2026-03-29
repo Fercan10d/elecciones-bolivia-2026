@@ -9,5 +9,5 @@ export function formatNumber(num: number): string {
 
 export function getActasPercentage(counted: number, total: number): number {
   if (total === 0) return 0;
-  return Math.round((counted / total) * 100);
+  return Math.round((counted / total) * 10000) / 100;
 }

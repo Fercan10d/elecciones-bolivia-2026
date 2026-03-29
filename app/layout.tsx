@@ -4,20 +4,20 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Resultados Elecciones Subnacionales 2026 - e/POST",
   description:
-    "Resultados preliminares SIREPRE de las elecciones subnacionales de Bolivia 2026. Gobernadores y alcaldes de ciudades capitales.",
+    "Resultados oficiales SCORC de las elecciones subnacionales de Bolivia 2026. Gobernadores y alcaldes de ciudades capitales.",
   openGraph: {
     title: "Resultados Elecciones Subnacionales 2026 - e/POST",
     description:
-      "Resultados preliminares SIREPRE de las elecciones subnacionales de Bolivia 2026. Gobernadores y alcaldes de ciudades capitales.",
+      "Resultados oficiales SCORC de las elecciones subnacionales de Bolivia 2026. Gobernadores y alcaldes de ciudades capitales.",
     type: "website",
     locale: "es_BO",
     siteName: "e/POST",
     images: [
       {
-        url: "https://elpost.com.bo/wp-content/uploads/2026/03/Resultados-preliminares-El-Post.png",
+        url: "https://elpost.com.bo/wp-content/uploads/2026/03/Resultados-Oficiales.png",
         width: 1200,
         height: 630,
-        alt: "Resultados preliminares - e/POST",
+        alt: "Resultados Oficiales - e/POST",
       },
     ],
   },
@@ -25,8 +25,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Resultados Elecciones Subnacionales 2026 - e/POST",
     description:
-      "Resultados preliminares SIREPRE de las elecciones subnacionales de Bolivia 2026.",
-    images: ["https://elpost.com.bo/wp-content/uploads/2026/03/Resultados-preliminares-El-Post.png"],
+      "Resultados oficiales SCORC de las elecciones subnacionales de Bolivia 2026.",
+    images: ["https://elpost.com.bo/wp-content/uploads/2026/03/Resultados-Oficiales.png"],
   },
 };
 

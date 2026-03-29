@@ -20,7 +20,7 @@ export default async function ResultsPage() {
     <main className="max-w-7xl mx-auto px-4 py-6">
       <div className="bg-[var(--color-elpost-light)] border border-[var(--color-elpost-primary)]/20 rounded-lg px-4 py-3 mb-6">
         <p className="text-sm text-[var(--color-elpost-secondary)]">
-          <strong>SIREPRE:</strong> Sistema de Resultados Electorales Preliminares — Conteo rápido.
+          <strong>SCORC:</strong> Sistema de Consolidación Oficial de Resultados de Cómputo.
         </p>
       </div>
 
